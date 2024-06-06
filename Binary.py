@@ -1,12 +1,3 @@
-def main():
-    num = int(input())
-    bits = int(input())
-    binary = to_binary(num, bits)
-    binary = binary_not(binary)
-    binary = add_to2(binary)
-    print(binary)
-
-
 def to_binary(num, bits):
     b = ""
     temp = []
@@ -51,6 +42,20 @@ def add_to2(b):
         b2 = str(current) + b2
         index -= 1
     return b2
+
+
+def binary_transform(num, bits):
+    binary = to_binary(num, bits)
+    binary = binary_not(binary)
+    binary = add_to2(binary)
+    return binary
+
+
+def main():
+    num = int(input("enter number: "))
+    bits = int(input("enter bits: "))
+    binary = binary_transform(num, bits)
+    print(binary)
 
 
 main()
