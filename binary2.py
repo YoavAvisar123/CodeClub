@@ -62,4 +62,3 @@ for num in ascii_list:
 
 file = open("binary", "w")
 file.write(crypted)
-file = open("binary", "r")
