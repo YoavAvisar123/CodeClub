@@ -5,7 +5,6 @@ def to_binary(number, bits):
     for bit in range(bits):
         temp.insert(0, temp_n)
         temp_n *= 2
-
     index = 0
     for n in temp:
         if n <= number:
@@ -43,22 +42,25 @@ def xor(input1, input2):
     return result
 
 
-file = open("binary", "r")
+def main():
+    file = open("binary", "r")
 
-text = file.read()
+    text = file.read()
 
-const = to_binary(5, 8)
+    const = to_binary(5, 8)
 
-ascii_list = list(text.encode('ascii'))
+    ascii_list = list(text.encode('ascii'))
 
-crypted = ""
+    crypted = ""
 
-for num in ascii_list:
-    num = to_binary(num, 8)
-    num = xor(num, const)
-    num = to_decimal(num)
-    crypted += str(chr(num))
+    for num in ascii_list:
+        num = to_binary(num, 8)
+        num = xor(num, const)
+        num = to_decimal(num)
+        crypted += str(chr(num))
 
+    file = open("binary", "w")
+    file.write(crypted)
 
-file = open("binary", "w")
-file.write(crypted)
+if __name__ == '__main__':
+    main()
