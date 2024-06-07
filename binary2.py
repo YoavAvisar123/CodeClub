@@ -62,5 +62,6 @@ def main():
     file = open("binary", "w")
     file.write(crypted)
 
+
 if __name__ == '__main__':
     main()
