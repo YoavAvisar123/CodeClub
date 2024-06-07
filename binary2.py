@@ -1,11 +1,4 @@
-file = open("binary", "r")
-
-text = file.read()
-
-words = text.split(" ")
-
-
-def to_binary(num, bits):
+def to_binary(number, bits):
     b = ""
     temp = []
     temp_n = 1
@@ -15,16 +8,29 @@ def to_binary(num, bits):
 
     index = 0
     for n in temp:
-        if n <= num:
+        if n <= number:
             b += "1"
-            num -= n
+            number -= n
         else:
             b += "0"
         index += 1
     return b
 
 
-const = to_binary(5, 8)
+def to_decimal(binary):
+    i = len(binary) - 1
+    temp = []
+    while i >= 0:
+        temp.append(2**i)
+        i -= 1
+
+    decimal = 0
+    i = 0
+    for n in binary:
+        if n == "1":
+            decimal += temp[i]
+        i += 1
+    return decimal
 
 
 def xor(input1, input2):
@@ -37,11 +43,22 @@ def xor(input1, input2):
     return result
 
 
+file = open("binary", "r")
+
+text = file.read()
+
+const = to_binary(5, 8)
+
+ascii_list = list(text.encode('ascii'))
+
 crypted = ""
 
+for num in ascii_list:
+    num = to_binary(num, 8)
+    num = xor(num, const)
+    num = to_decimal(num)
+    crypted += str(chr(num))
 
-for word in words:
-    crypted += str(xor(word, const)) + " "
 
 file = open("binary", "w")
 file.write(crypted)
