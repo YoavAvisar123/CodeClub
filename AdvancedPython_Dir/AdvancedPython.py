@@ -9,7 +9,22 @@ def main():
     n = int(sys.argv[1])
 
     with open("C:\\Users\\PC\\PycharmProjects\\CodeClub\\AdvancedPython_Dir\\text.txt") as f:
-        words = f.read().split(" ")
+        text = f.read()
+        text = text.replace('\n', ' ')
+
+        words_temp = text.split(" ")
+        words = []
+
+        for word in words_temp:
+            temp = ''
+
+            for i in range(len(word)):
+                c = word[i]
+                temp += c if c.isalpha() else ''
+
+            if temp != '':
+                words.append(temp)
+
         f.close()
 
     words_count = {}
